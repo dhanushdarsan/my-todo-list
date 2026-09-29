@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple, elegant to-do list to keep your day on track.">
+    <title>My Tasks</title>
+
+    <!-- Font (falls back to system fonts if offline) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon (inline, so no extra image file is needed) -->
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="brand">
+                <div class="logo" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12.5l4.5 4.5L19 7.5" />
+                    </svg>
+                </div>
+                <div>
+                    <h1>My Tasks</h1>
+                    <p class="subtitle">Stay organized. Get things done.</p>
+                </div>
+            </div>
+            <p class="summary" id="summary" aria-live="polite">No tasks yet</p>
+        </header>
+
+        <!-- Add task -->
+        <form class="add-form" id="add-form" novalidate>
+            <label for="task-input" class="visually-hidden">New task</label>
+            <input class="add-input" id="task-input" type="text" placeholder="What needs to be done?"
+                autocomplete="off" maxlength="200" aria-describedby="form-error">
+            <button class="add-btn" type="submit">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" aria-hidden="true">
+                    <path d="M12 5v14M5 12h14" />
+                </svg>
+                <span>Add</span>
+            </button>
+        </form>
+        <p class="form-error" id="form-error" role="alert" hidden>Enter a task before adding it.</p>
+
+        <!-- Statistics -->
+        <section class="stats" id="stats" aria-label="Task statistics" hidden>
+            <div class="stat">
+                <span class="stat-value" id="stat-total">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="stat-completed">0</span>
+                <span class="stat-label">Completed</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="stat-remaining">0</span>
+                <span class="stat-label">Remaining</span>
+            </div>
+        </section>
+
+        <!-- Task list -->
+        <ul class="task-list" id="task-list" aria-label="Tasks"></ul>
+
+        <!-- Empty state -->
+        <div class="empty-state" id="empty-state">
+            <div class="empty-icon" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="4" width="14" height="17" rx="3" />
+                    <path d="M9 4.5h6" />
+                    <path d="M9 13l2.2 2.2L15.5 11" />
+                </svg>
+            </div>
+            <h2 class="empty-title" id="empty-title">No tasks yet</h2>
+            <p class="empty-text" id="empty-text">Add a task above to get started.</p>
+        </div>
+
+        <!-- Filters and clear completed -->
+        <div class="toolbar" id="toolbar" hidden>
+            <div class="filters" id="filters" role="group" aria-label="Filter tasks">
+                <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All</button>
+                <button class="filter-btn" type="button" data-filter="active" aria-pressed="false">Active</button>
+                <button class="filter-btn" type="button" data-filter="completed"
+                    aria-pressed="false">Completed</button>
+            </div>
+            <button class="clear-btn" id="clear-completed" type="button" hidden>Clear completed</button>
+        </div>
+
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
